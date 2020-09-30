@@ -26,7 +26,7 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT and event.is_action_released("mouse_left"):
 			grabbed = false;
 			var LV = get_node("../Arm/Joint1/Joint2/Hand/HandRB").get_linear_velocity().normalized()
-			add_torque(1000)
+			
 			apply_impulse(Vector2(0,0), LV * 1000)
 
 # Called when the node enters the scene tree for the first time.
