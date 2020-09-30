@@ -24,10 +24,10 @@ func _ready():
 	len_middle = joint2.position.x
 	len_lower = hand.position.x
 	
-	if !flipped:
-		$Sprite.flip_h = true
-		joint1.get_node("Sprite").flip_h = true
-		joint2.get_node("Sprite").flip_h = true
+#	if !flipped:
+#		$Sprite.flip_h = true
+#		joint1.get_node("Sprite").flip_h = true
+#		joint2.get_node("Sprite").flip_h = true
 
 func step(g_pos):
 	if goal_pos == g_pos:
