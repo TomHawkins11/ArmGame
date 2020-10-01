@@ -1,6 +1,6 @@
 extends Sprite
-var spriteToSwap = preload("res://Hand_Arm.png")
-var spriteNew = preload("res://ClosedHand_Arm.png")
+var spriteToSwap = preload("res://Sprites/Hand_Sprite_Open.png")
+var spriteNew = preload("res://Sprites/Hand_Sprite_Closed.png")
 
 
 
