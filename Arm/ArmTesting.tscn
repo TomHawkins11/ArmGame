@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Hand_Arm.png" type="Texture" id=1]
 [ext_resource path="res://Arm.gd" type="Script" id=2]
@@ -12,15 +12,14 @@
 [ext_resource path="res://Sprites/background.png" type="Texture" id=10]
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=11]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.4425, 91.8056 )
-[sub_resource type="PhysicsMaterial" id=1]
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.4425, 146.375 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32.0413, 41.5288 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 35.15, 126.437 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 208, 10 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 8 )
@@ -63,10 +62,11 @@ texture = ExtResource( 1 )
 script = ExtResource( 6 )
 
 [node name="HandRB" type="RigidBody2D" parent="Arm/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
 mode = 3
-contact_monitor = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arm/Joint1/Joint2/Hand/HandRB"]
+[node name="HandCollision" type="CollisionPolygon2D" parent="Arm/Joint1/Joint2/Hand/HandRB"]
 modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
 polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, -78.0759, 42.1752 )
 
@@ -76,22 +76,13 @@ position = Vector2( 10.0934, -89.2561 )
 [node name="Torch" type="RigidBody2D" parent="."]
 position = Vector2( 900.85, 398.437 )
 z_index = 1
-physics_material_override = SubResource( 1 )
 contact_monitor = true
 applied_torque = 3.652
 script = ExtResource( 7 )
 
 [node name="Torch2" parent="Torch" instance=ExtResource( 5 )]
-position = Vector2( 26.9725, -159.975 )
-[node name="Torch" type="Sprite" parent="Torch"]
-position = Vector2( 0.425, -0.26 )
-scale = Vector2( 0.659995, 0.5 )
-texture = ExtResource( 5 )
+position = Vector2( 2.67029e-05, -0.26001 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
-position = Vector2( 0.425, -0.26 )
-shape = SubResource( 1 )
-disabled = true
 [node name="Light2D2" type="Light2D" parent="Torch/Torch2"]
 position = Vector2( 26.5074, -117.627 )
 texture = ExtResource( 9 )
@@ -103,14 +94,18 @@ mode = 2
 position = Vector2( 0.425, -0.26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
-position = Vector2( -1.1624, 50.5368 )
-shape = SubResource( 1 )
+position = Vector2( 1.45435e-05, 9.82299 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
-position = Vector2( 26.9858, -155.565 )
-shape = SubResource( 2 )
-disabled = true
+position = Vector2( 0.424988, 17.563 )
+shape = SubResource( 3 )
 
 [node name="Exit Sign" parent="." instance=ExtResource( 11 )]
 position = Vector2( 97.746, 49.7014 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 840, 592 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 4 )
