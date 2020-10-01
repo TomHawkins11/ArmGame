@@ -1,21 +1,32 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Hand_Arm.png" type="Texture" id=1]
 [ext_resource path="res://Arm.gd" type="Script" id=2]
 [ext_resource path="res://Bicep_Arm.png" type="Texture" id=3]
 [ext_resource path="res://Forearm_Arm.png" type="Texture" id=4]
-[ext_resource path="res://Torch.png" type="Texture" id=5]
+[ext_resource path="res://Scene/Torch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://SpriteSwap.gd" type="Script" id=6]
 [ext_resource path="res://Grabbable.gd" type="Script" id=7]
 [ext_resource path="res://GameController.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/background.png" type="Texture" id=10]
+[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=11]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.4425, 146.375 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.313726, 0.313726, 0.313726, 1 )
+
+[node name="Background" type="Sprite" parent="."]
+show_behind_parent = true
+scale = Vector2( 128, 128 )
+texture = ExtResource( 10 )
 
 [node name="Arm" type="Position2D" parent="."]
 position = Vector2( 477.43, 628.235 )
@@ -56,22 +67,31 @@ polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68
 
 [node name="Torch" type="RigidBody2D" parent="."]
 position = Vector2( 900.85, 398.437 )
-physics_material_override = SubResource( 2 )
+z_index = 1
+physics_material_override = SubResource( 1 )
 contact_monitor = true
 script = ExtResource( 7 )
 
-[node name="Torch" type="Sprite" parent="Torch"]
-position = Vector2( 27.8551, -156.693 )
-scale = Vector2( 0.659995, 0.5 )
-texture = ExtResource( 5 )
+[node name="Torch2" parent="Torch" instance=ExtResource( 5 )]
+position = Vector2( 26.9725, -159.975 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
-position = Vector2( 26.9858, -155.565 )
-shape = SubResource( 1 )
-disabled = true
+[node name="Light2D2" type="Light2D" parent="Torch/Torch2"]
+position = Vector2( 26.5074, -117.627 )
+texture = ExtResource( 9 )
+color = Color( 0.811765, 0.65098, 0.47451, 1 )
+energy = 1.38
+mode = 2
 
 [node name="Detector" type="Area2D" parent="Torch"]
 position = Vector2( 26.192, -155.565 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
+position = Vector2( 26.9858, -155.565 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Exit Sign" parent="." instance=ExtResource( 11 )]
+position = Vector2( 97.746, 49.7014 )

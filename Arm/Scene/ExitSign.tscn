@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/light.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Exit_Sign.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="Sprite"]
+show_behind_parent = true
+position = Vector2( 1.69055, 0 )
+texture = ExtResource( 2 )
+texture_scale = 1.46
+color = Color( 0.8, 0.992157, 0.772549, 1 )
+energy = 1.1
+mode = 2
+shadow_enabled = true
