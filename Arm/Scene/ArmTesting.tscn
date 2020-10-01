@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Prefabs/Arm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Goal.gd" type="Script" id=3]
+[ext_resource path="res://Audio/Fire_Loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scripts/Grabbable.gd" type="Script" id=5]
 [ext_resource path="res://Prefabs/Torch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
@@ -69,6 +70,12 @@ texture = ExtResource( 8 )
 color = Color( 0.811765, 0.65098, 0.47451, 1 )
 energy = 1.38
 mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Torch/Torch2/Light2D2"]
+position = Vector2( -26.5074, 117.627 )
+stream = ExtResource( 4 )
+autoplay = true
+max_distance = 707.0
 
 [node name="Detector" type="Area2D" parent="Torch"]
 position = Vector2( 0.425, -0.26 )
