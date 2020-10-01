@@ -1,8 +1,9 @@
 extends Sprite
-var spriteToSwap = preload("res://Sprites/Hand_Sprite_Open.png")
-var spriteNew = preload("res://Sprites/Hand_Sprite_Closed.png")
 
-
+export(String, FILE, "*.png") var sprite_to_swap_path
+export(String, FILE, "*.png") var sprite_new_path
+onready var spriteToSwap = load(sprite_to_swap_path)
+onready var spriteNew = load(sprite_new_path)
 
 func switch_sprite(sprite):
 	texture = sprite

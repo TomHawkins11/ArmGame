@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ClosedHand_Arm.png-1306d4873e8878c350c91d5cb0c303cc.stex"
+path="res://.import/ClosedHand_Arm.png-e6e0478f4789cce405fcc9e19dc82ce0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ClosedHand_Arm.png"
-dest_files=[ "res://.import/ClosedHand_Arm.png-1306d4873e8878c350c91d5cb0c303cc.stex" ]
+source_file="res://Sprites/ClosedHand_Arm.png"
+dest_files=[ "res://.import/ClosedHand_Arm.png-e6e0478f4789cce405fcc9e19dc82ce0.stex" ]
 
 [params]
 

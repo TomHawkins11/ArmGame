@@ -16,13 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Floppy Arm Gang"
-run/main_scene="res://ArmTesting.tscn"
+run/main_scene="res://Scene/ArmTesting.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/always_on_top=true
-mouse_cursor/custom_image="res://Cursor.png"
+mouse_cursor/custom_image="res://Sprites/Cursor.png"
 
 [input]
 

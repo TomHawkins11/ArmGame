@@ -1,5 +1,6 @@
 extends Node2D
 
+export(String, FILE, "*.tscn,*.scn") var next_scene_path
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,6 +16,9 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ESCAPE:
 			get_tree().quit()
+			
+func next_level():
+	get_tree().change_scene(next_scene_path)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

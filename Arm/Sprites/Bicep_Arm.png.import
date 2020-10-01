@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hand_Arm.png-f637a12b1d617ebb5c30a5a0a22230e0.stex"
+path="res://.import/Bicep_Arm.png-0d1c78f960979eb640fa4fd785cc4460.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hand_Arm.png"
-dest_files=[ "res://.import/Hand_Arm.png-f637a12b1d617ebb5c30a5a0a22230e0.stex" ]
+source_file="res://Sprites/Bicep_Arm.png"
+dest_files=[ "res://.import/Bicep_Arm.png-0d1c78f960979eb640fa4fd785cc4460.stex" ]
 
 [params]
 
