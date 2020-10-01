@@ -11,7 +11,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	pass # Replace with function body.
 	
-
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ESCAPE:
+			get_tree().quit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

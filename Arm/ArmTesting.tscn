@@ -9,10 +9,11 @@
 [ext_resource path="res://Grabbable.gd" type="Script" id=7]
 [ext_resource path="res://GameController.gd" type="Script" id=8]
 
-[sub_resource type="PhysicsMaterial" id=2]
-
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.4425, 146.375 )
+extents = Vector2( 29.4425, 91.8056 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32.0413, 41.5288 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 8 )
@@ -54,24 +55,40 @@ contact_monitor = true
 modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
 polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, -78.0759, 42.1752 )
 
+[node name="GrabPos" type="Position2D" parent="Arm/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+
 [node name="Torch" type="RigidBody2D" parent="."]
 position = Vector2( 900.85, 398.437 )
-physics_material_override = SubResource( 2 )
-contact_monitor = true
+applied_torque = 3.652
 script = ExtResource( 7 )
 
 [node name="Torch" type="Sprite" parent="Torch"]
-position = Vector2( 27.8551, -156.693 )
+position = Vector2( 0.425, -0.26 )
 scale = Vector2( 0.659995, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
-position = Vector2( 26.9858, -155.565 )
+position = Vector2( 0.425, -0.26 )
 shape = SubResource( 1 )
 disabled = true
 
 [node name="Detector" type="Area2D" parent="Torch"]
-position = Vector2( 26.192, -155.565 )
+position = Vector2( 0.425, -0.26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
+position = Vector2( -1.1624, 50.5368 )
 shape = SubResource( 1 )
+
+[node name="FireDetector" type="Area2D" parent="Torch"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch/FireDetector"]
+position = Vector2( 3.1748, -92.0693 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 54.6055, 40.6637 )
+scale = Vector2( 4.88913, 4.11527 )
+polygon = PoolVector2Array( -11.1687, -9.88117, 198.275, -9.88117, 198.275, 135.917, -11.1687, 135.917, -16.0776, 141.749, 203.184, 141.749, 203.184, -15.7131, -17.7139, -15.7131, -16.0776, 141.749, -11.1687, 135.917 )

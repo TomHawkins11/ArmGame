@@ -7,7 +7,7 @@ var grabbed = false
 
 func _physics_process(delta):
 	if grabbed:
-		self.position = get_node("../Arm/Joint1/Joint2/Hand").global_position
+		self.position = get_node("../Arm/Joint1/Joint2/Hand/GrabPos").global_position
 		self.rotation = get_node("../Arm/Joint1/Joint2/Hand").global_rotation
 		sleeping = true
 	else:
@@ -28,6 +28,7 @@ func _input(event):
 			var LV = get_node("../Arm/Joint1/Joint2/Hand/HandRB").get_linear_velocity().normalized()
 			
 			apply_impulse(Vector2(0,0), LV * 1000)
+			set_angular_velocity(LV.length() * 4)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
