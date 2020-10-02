@@ -25,6 +25,7 @@ func _input(event):
 				print(b.name)
 				if b.name == "HandRB" and grabbed == false:
 					grabbed = true;
+					$Torch2/Grab_Sound.play()
 					print("grabbed item")
 		if event.button_index == BUTTON_LEFT and event.is_action_released("mouse_left"):
 			if grabbed:

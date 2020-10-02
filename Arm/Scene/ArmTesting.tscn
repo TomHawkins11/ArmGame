@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Prefabs/Arm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/light.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/background.png" type="Texture" id=9]
+[ext_resource path="res://Audio/Level_Music.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/Grab01.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sprites/Bucket_Arm.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/ExitSign.gd" type="Script" id=14]
 
@@ -71,11 +73,18 @@ color = Color( 0.811765, 0.65098, 0.47451, 1 )
 energy = 1.38
 mode = 2
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Torch/Torch2/Light2D2"]
+[node name="Crackle_Loop" type="AudioStreamPlayer2D" parent="Torch/Torch2/Light2D2"]
 position = Vector2( -26.5074, 117.627 )
 stream = ExtResource( 4 )
+volume_db = 11.134
 autoplay = true
 max_distance = 707.0
+bus = "Sound Effects"
+
+[node name="Grab_Sound" type="AudioStreamPlayer2D" parent="Torch/Torch2"]
+stream = ExtResource( 11 )
+volume_db = 3.0
+bus = "Sound Effects"
 
 [node name="Detector" type="Area2D" parent="Torch"]
 position = Vector2( 0.425, -0.26 )
@@ -126,8 +135,14 @@ scale = Vector2( 5.04, 0.198413 )
 shape = SubResource( 4 )
 
 [node name="Exit Sign" parent="." instance=ExtResource( 7 )]
-position = Vector2( 97.746, 49.7014 )
+position = Vector2( 102.93, 52.2935 )
 script = ExtResource( 14 )
 
 [node name="Arm" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 528 )
+position = Vector2( -0.964722, 578.114 )
+
+[node name="Background Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -9.0
+autoplay = true
+bus = "Music"
