@@ -1,7 +1,8 @@
 extends RigidBody2D
 
 var grabbed = false
-onready var handRB = get_node("../Arm/Joint1/Joint2/Hand/HandRB")
+export(NodePath) var node
+onready var handRB = get_node(node)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -25,9 +26,12 @@ func _input(event):
 				print(b.name)
 				if b.name == "HandRB" and grabbed == false:
 					grabbed = true;
+					var torch_sfx = load("../Audio/Grab0" + str(randi() % 6))
+					$Torch2/Grab_Sound.set_stream(torch_sfx)
 					$Torch2/Grab_Sound.play()
 					print("grabbed item")
 		if event.button_index == BUTTON_LEFT and event.is_action_released("mouse_left"):
+			add_collision_exception_with(handRB)
 			if grabbed:
 				grabbed = false;
 				var LV = get_node("../Arm/Joint1/Joint2/Hand/HandRB").get_linear_velocity().normalized()
