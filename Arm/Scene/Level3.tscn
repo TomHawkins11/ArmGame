@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Bounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/Arm.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.7349, 32.2435 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+cull_mode = 1
+polygon = PoolVector2Array( 430.691, 591.92, 433.283, 159.039, 756.432, 159.903, 756.432, 584.144 )
+
+[node name="Level2" type="Node2D"]
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 6 )]
+
+[node name="Background" parent="." instance=ExtResource( 5 )]
+position = Vector2( 4.32019, -3.05176e-05 )
+
+[node name="Torch" parent="." instance=ExtResource( 3 )]
+visible = true
+position = Vector2( 362.167, 162.97 )
+
+[node name="Arm" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1.98254, 587.21 )
+
+[node name="Bounds" parent="." instance=ExtResource( 2 )]
+position = Vector2( 844.32, 601.504 )
+
+[node name="Exit Sign" parent="." instance=ExtResource( 1 )]
+position = Vector2( 109.732, 59.6184 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 301, -100 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 595.751, 377.151 )
+scale = Vector2( 5.11766, 6.73773 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 595.751, 377.151 )
+scale = Vector2( 5.11766, 6.73773 )
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
+position = Vector2( 0.864136, -5.1842 )
+scale = Vector2( 0.994132, 1.017 )
+occluder = SubResource( 2 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 300, 300 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
+position = Vector2( 595.751, 377.151 )
+scale = Vector2( 5.11766, 6.73773 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 595.751, 377.151 )
+scale = Vector2( 5.11766, 6.73773 )
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D2"]
+position = Vector2( 0.864136, -5.1842 )
+scale = Vector2( 0.994132, 1.017 )
+occluder = SubResource( 2 )
