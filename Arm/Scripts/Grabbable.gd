@@ -26,10 +26,9 @@ func _input(event):
 				print(b.name)
 				if b.name == "HandRB" and grabbed == false:
 					grabbed = true;
-					var torch_sfx = load("../Audio/Grab0" + str(randi() % 6))
+					var torch_sfx = load("res://Audio/Grab0" + str((randi() % 6 + 1)) + ".wav")
 					$Torch2/Grab_Sound.set_stream(torch_sfx)
 					$Torch2/Grab_Sound.play()
-					print("grabbed item")
 		if event.button_index == BUTTON_LEFT and event.is_action_released("mouse_left"):
 			add_collision_exception_with(handRB)
 			if grabbed:
