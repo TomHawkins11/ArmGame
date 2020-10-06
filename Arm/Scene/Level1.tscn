@@ -12,13 +12,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.10639, 10 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.4425, 146.375 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 35.15, 126.437 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 208, 10 )
 
 [node name="Node2D" type="Node2D"]
@@ -69,24 +69,24 @@ position = Vector2( 0.425, -0.26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
 position = Vector2( 1.45435e-05, 9.82299 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
 position = Vector2( 0.424988, 17.563 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 position = Vector2( 840, 592 )
 scale = Vector2( 5.04, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Floor5" type="StaticBody2D" parent="Bounds"]
 position = Vector2( -6.34921, -600 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor5"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Floor2" type="StaticBody2D" parent="Bounds"]
 position = Vector2( 38.0952, -168 )
@@ -94,7 +94,7 @@ rotation = 1.5708
 scale = Vector2( 5.04, 0.198413 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor2"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Floor3" type="StaticBody2D" parent="Bounds"]
 position = Vector2( -168.254, -168 )
@@ -102,7 +102,7 @@ rotation = 1.5708
 scale = Vector2( 5.04, 0.198413 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor3"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Floor4" type="StaticBody2D" parent="Bounds"]
 position = Vector2( -168.254, -168 )
@@ -110,7 +110,7 @@ rotation = 1.5708
 scale = Vector2( 5.04, 0.198413 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor4"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Exit Sign" parent="." instance=ExtResource( 7 )]
 position = Vector2( 97.746, 49.7014 )

@@ -1,13 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Prefabs/Arm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Arm.gd" type="Script" id=5]
 [ext_resource path="res://Prefabs/Bounds.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://Arm_NPC.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.7349, 32.2435 )
@@ -22,14 +26,67 @@ script = ExtResource( 1 )
 [node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
 
 [node name="Background" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4.32019, -3.05176e-005 )
+position = Vector2( 4.32019, -3.05176e-05 )
 
 [node name="Torch" parent="." instance=ExtResource( 4 )]
 visible = true
 position = Vector2( 362.167, 162.97 )
+contacts_reported = 10000
+hand_sprite_node_path = NodePath("../Arm2/Joint1/Joint2/Hand/Hand_Arm")
+arm_node_path = NodePath("../Arm2")
+hand_node_path = NodePath("../Arm/Joint1/Joint2/Hand/HandRB")
+hand_node_offset_path = NodePath("../Arm/Joint1/Joint2/Hand/GrabPos")
+hand_NPC_node_path = NodePath("../Arm2/Joint1/Joint2/Hand/Hand_NPC_RB")
+hand_NPC_node_offset_path = NodePath("../Arm2/Joint1/Joint2/Hand/GrabPos")
 
-[node name="Arm" parent="." instance=ExtResource( 5 )]
+[node name="Arm" type="Position2D" parent="."]
 position = Vector2( 1.98254, 587.21 )
+rotation = -0.87301
+script = ExtResource( 5 )
+flipped = false
+
+[node name="Bicep_Arm" type="Sprite" parent="Arm"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 11 )
+
+[node name="Joint1" type="Position2D" parent="Arm"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="Arm/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 11 )
+
+[node name="Joint2" type="Position2D" parent="Arm/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="Arm/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+
+[node name="Hand_Arm" type="Sprite" parent="Arm/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 12 )
+script = ExtResource( 10 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed.png"
+
+[node name="HandRB" type="RigidBody2D" parent="Arm/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="Arm/Joint1/Joint2/Hand/HandRB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="GrabPos" type="Position2D" parent="Arm/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+
+[node name="Arm2" parent="." instance=ExtResource( 9 )]
+resting_pos_path = NodePath("../RestingPos")
 
 [node name="Bounds" parent="." instance=ExtResource( 6 )]
 position = Vector2( 844.32, 601.504 )
@@ -74,3 +131,8 @@ shape = SubResource( 1 )
 position = Vector2( 0.864136, -5.1842 )
 scale = Vector2( 0.994132, 1.017 )
 occluder = SubResource( 2 )
+
+[node name="RestingPos" type="Position2D" parent="."]
+position = Vector2( 803.073, 307.244 )
+
+[editable path="Arm2"]
