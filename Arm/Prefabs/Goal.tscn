@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Goal.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Bucket_Arm.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.10639, 10 )
+
+[node name="Goal" type="RigidBody2D"]
+position = Vector2( 912, 312 )
+mode = 1
+script = ExtResource( 1 )
+torchPath = NodePath("../Torch")
+game_controller_path = NodePath("..")
+
+[node name="Detector" type="Area2D" parent="."]
+scale = Vector2( -8.88188, -7.65261 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -8, -40 )
+scale = Vector2( 0.339867, 0.339867 )
+texture = ExtResource( 2 )

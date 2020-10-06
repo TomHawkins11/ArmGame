@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 208, 10 )
+
+[node name="Bounds" type="StaticBody2D"]
+position = Vector2( 840, 592 )
+scale = Vector2( 5.04, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Floor5" type="StaticBody2D" parent="."]
+position = Vector2( -6.34921, -600 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor5"]
+shape = SubResource( 1 )
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2( 38.0952, -168 )
+rotation = 1.5708
+scale = Vector2( 5.04, 0.198413 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
+shape = SubResource( 1 )
+
+[node name="Floor3" type="StaticBody2D" parent="."]
+position = Vector2( -168.254, -168 )
+rotation = 1.5708
+scale = Vector2( 5.04, 0.198413 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
+shape = SubResource( 1 )
+
+[node name="Floor4" type="StaticBody2D" parent="."]
+position = Vector2( -168.254, -168 )
+rotation = 1.5708
+scale = Vector2( 5.04, 0.198413 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4"]
+shape = SubResource( 1 )

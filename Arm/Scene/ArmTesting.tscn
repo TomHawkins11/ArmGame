@@ -1,142 +1,32 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Goal.gd" type="Script" id=3]
-[ext_resource path="res://Audio/Fire_Loop.wav" type="AudioStream" id=4]
-[ext_resource path="res://Scripts/Grabbable.gd" type="Script" id=5]
-[ext_resource path="res://Prefabs/Torch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Sprites/light.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/background.png" type="Texture" id=9]
+[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Audio/Level_Music.wav" type="AudioStream" id=10]
-[ext_resource path="res://Audio/Grab01.wav" type="AudioStream" id=11]
+[ext_resource path="res://Prefabs/Bounds.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Bucket_Arm.png" type="Texture" id=13]
+[ext_resource path="res://Prefabs/Goal.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/ExitSign.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/Arm.gd" type="Script" id=16]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.10639, 10 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 29.4425, 146.375 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 35.15, 126.437 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 208, 10 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
 next_scene_path = "res://Scene/Level1.tscn"
 
-[node name="Goal" type="RigidBody2D" parent="."]
-position = Vector2( 912, 312 )
-mode = 1
-script = ExtResource( 3 )
-torchPath = NodePath("../Torch")
-game_controller_path = NodePath("..")
+[node name="Goal" parent="." instance=ExtResource( 13 )]
 
-[node name="Detector" type="Area2D" parent="Goal"]
-scale = Vector2( -8.88188, -7.65261 )
+[node name="CanvasModulate" parent="." instance=ExtResource( 3 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Detector"]
-shape = SubResource( 1 )
+[node name="Background" parent="." instance=ExtResource( 9 )]
 
-[node name="Sprite" type="Sprite" parent="Goal"]
-position = Vector2( -8, -40 )
-scale = Vector2( 0.339867, 0.339867 )
-texture = ExtResource( 13 )
+[node name="Torch" parent="." instance=ExtResource( 4 )]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.313726, 0.313726, 0.313726, 1 )
-
-[node name="Background" type="Sprite" parent="."]
-show_behind_parent = true
-scale = Vector2( 128, 128 )
-texture = ExtResource( 9 )
-
-[node name="Torch" type="RigidBody2D" parent="."]
-position = Vector2( 592, 328 )
-z_index = 1
-contact_monitor = true
-applied_torque = 3.652
-script = ExtResource( 5 )
-node = NodePath("../Arm/Joint1/Joint2/Hand/HandRB")
-
-[node name="Torch2" parent="Torch" instance=ExtResource( 6 )]
-position = Vector2( 2.67029e-05, -0.26001 )
-
-[node name="Light2D2" type="Light2D" parent="Torch/Torch2"]
-position = Vector2( 26.5074, -117.627 )
-texture = ExtResource( 8 )
-color = Color( 0.811765, 0.65098, 0.47451, 1 )
-energy = 1.38
-mode = 2
-
-[node name="Crackle_Loop" type="AudioStreamPlayer2D" parent="Torch/Torch2/Light2D2"]
-position = Vector2( -26.5074, 117.627 )
-stream = ExtResource( 4 )
-volume_db = 11.134
-autoplay = true
-max_distance = 707.0
-bus = "Sound Effects"
-
-[node name="Grab_Sound" type="AudioStreamPlayer2D" parent="Torch/Torch2"]
-stream = ExtResource( 11 )
-volume_db = 3.0
-bus = "Sound Effects"
-
-[node name="Detector" type="Area2D" parent="Torch"]
-position = Vector2( 0.425, -0.26 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
-position = Vector2( 1.45435e-05, 9.82299 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
-position = Vector2( 0.424988, 17.563 )
-shape = SubResource( 3 )
-
-[node name="Bounds" type="StaticBody2D" parent="."]
-position = Vector2( 840, 592 )
-scale = Vector2( 5.04, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
-shape = SubResource( 4 )
-
-[node name="Floor5" type="StaticBody2D" parent="Bounds"]
-position = Vector2( -6.34921, -600 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor5"]
-shape = SubResource( 4 )
-
-[node name="Floor2" type="StaticBody2D" parent="Bounds"]
-position = Vector2( 38.0952, -168 )
-rotation = 1.5708
-scale = Vector2( 5.04, 0.198413 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor2"]
-shape = SubResource( 4 )
-
-[node name="Floor3" type="StaticBody2D" parent="Bounds"]
-position = Vector2( -168.254, -168 )
-rotation = 1.5708
-scale = Vector2( 5.04, 0.198413 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor3"]
-shape = SubResource( 4 )
-
-[node name="Floor4" type="StaticBody2D" parent="Bounds"]
-position = Vector2( -168.254, -168 )
-rotation = 1.5708
-scale = Vector2( 5.04, 0.198413 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor4"]
-shape = SubResource( 4 )
+[node name="Bounds" parent="." instance=ExtResource( 11 )]
 
 [node name="Exit Sign" parent="." instance=ExtResource( 7 )]
 position = Vector2( 102.93, 52.2935 )
