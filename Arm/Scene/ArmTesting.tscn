@@ -1,47 +1,46 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/GameController.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Audio/Level_Music.wav" type="AudioStream" id=10]
-[ext_resource path="res://Prefabs/Bounds.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=12]
-[ext_resource path="res://Prefabs/Goal.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scripts/ExitSign.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=15]
-[ext_resource path="res://Scripts/Arm.gd" type="Script" id=16]
+[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/ExitSign.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Arm.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=11]
+[ext_resource path="res://Audio/Level_Music.wav" type="AudioStream" id=12]
+[ext_resource path="res://Boundaries.gd" type="Script" id=13]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 next_scene_path = "res://Scene/Level1.tscn"
 
-[node name="Goal" parent="." instance=ExtResource( 13 )]
+[node name="Goal" parent="." instance=ExtResource( 2 )]
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 3 )]
 
-[node name="Background" parent="." instance=ExtResource( 9 )]
+[node name="Background" parent="." instance=ExtResource( 4 )]
 
-[node name="Torch" parent="." instance=ExtResource( 4 )]
+[node name="Torch" parent="." instance=ExtResource( 5 )]
 
-[node name="Bounds" parent="." instance=ExtResource( 11 )]
-
-[node name="Exit Sign" parent="." instance=ExtResource( 7 )]
+[node name="Exit Sign" parent="." instance=ExtResource( 6 )]
 position = Vector2( 102.93, 52.2935 )
-script = ExtResource( 14 )
+script = ExtResource( 7 )
 
 [node name="Arm" type="Position2D" parent="."]
+editor/display_folded = true
 position = Vector2( -0.964722, 578.114 )
 rotation = -0.87301
-script = ExtResource( 16 )
+script = ExtResource( 8 )
 flipped = false
 
 [node name="Bicep_Arm" type="Sprite" parent="Arm"]
 position = Vector2( 102.272, 6.96484 )
 scale = Vector2( 0.865, 0.7 )
-texture = ExtResource( 1 )
+texture = ExtResource( 9 )
 
 [node name="Joint1" type="Position2D" parent="Arm"]
 position = Vector2( 198.978, 5.93639 )
@@ -49,7 +48,7 @@ position = Vector2( 198.978, 5.93639 )
 [node name="Forearm_Arm" type="Sprite" parent="Arm/Joint1"]
 position = Vector2( 124.66, 0.0240784 )
 scale = Vector2( 1, 0.7 )
-texture = ExtResource( 1 )
+texture = ExtResource( 9 )
 
 [node name="Joint2" type="Position2D" parent="Arm/Joint1"]
 position = Vector2( 218.633, 0 )
@@ -60,8 +59,8 @@ position = Vector2( 80.726, -3.36353 )
 [node name="Hand_Arm" type="Sprite" parent="Arm/Joint1/Joint2/Hand"]
 position = Vector2( 2.23138, -14.2555 )
 rotation = 0.527911
-texture = ExtResource( 12 )
-script = ExtResource( 15 )
+texture = ExtResource( 10 )
+script = ExtResource( 11 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open.png"
 sprite_new_path = "res://Sprites/Hand_Sprite_Closed.png"
 
@@ -79,7 +78,16 @@ polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68
 position = Vector2( 10.0934, -89.2561 )
 
 [node name="Background Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 12 )
 volume_db = -9.0
 autoplay = true
 bus = "Music"
+
+[node name="Bounds" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Lower_Bounds" type="Position2D" parent="Bounds"]
+position = Vector2( 0, 813.574 )
+
+[node name="Upper_Bounds" type="Position2D" parent="Bounds"]
+position = Vector2( 0, -250.563 )

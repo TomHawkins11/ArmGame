@@ -12,14 +12,19 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	pass # Replace with function body.
 	
+			
+func next_level():
+	get_tree().change_scene(next_scene_path)
+	
+func restart_level():
+	get_tree().reload_current_scene()
+
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ESCAPE:
 			get_tree().quit()
-			
-func next_level():
-	get_tree().change_scene(next_scene_path)
-
+		if event.pressed and event.scancode == KEY_R:
+			restart_level()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

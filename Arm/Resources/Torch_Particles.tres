@@ -36,12 +36,10 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.985663, 0 ), 0.0, 0.0, 0, 
 curve = SubResource( 9 )
 
 [resource]
-lifetime_randomness = 1.0
 trail_size_modifier = SubResource( 10 )
 emission_shape = 1
 emission_sphere_radius = 4.8
 flag_disable_z = true
-direction = Vector3( 1, 1, 0 )
 spread = 97.64
 gravity = Vector3( 0, -98, 0 )
 initial_velocity = 18.62
