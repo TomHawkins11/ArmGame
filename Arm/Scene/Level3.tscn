@@ -5,13 +5,12 @@
 [ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Arm.gd" type="Script" id=5]
-[ext_resource path="res://Prefabs/Bounds.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=8]
 [ext_resource path="res://Arm_NPC.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=10]
-[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=12]
+[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.7349, 32.2435 )
@@ -20,15 +19,20 @@ extents = Vector2( 31.7349, 32.2435 )
 cull_mode = 1
 polygon = PoolVector2Array( 430.691, 591.92, 433.283, 159.039, 756.432, 159.903, 756.432, 584.144 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 751.702, 522.75 )
+
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
 
 [node name="Background" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4.32019, -3.05176e-05 )
+position = Vector2( 4.32019, -3.05176e-005 )
 
-[node name="Torch" parent="." instance=ExtResource( 4 )]
+[node name="Torch" parent="." groups=[
+"RB",
+] instance=ExtResource( 4 )]
 visible = true
 position = Vector2( 362.167, 162.97 )
 contacts_reported = 10000
@@ -38,6 +42,7 @@ hand_node_path = NodePath("../Arm/Joint1/Joint2/Hand/HandRB")
 hand_node_offset_path = NodePath("../Arm/Joint1/Joint2/Hand/GrabPos")
 hand_NPC_node_path = NodePath("../Arm2/Joint1/Joint2/Hand/Hand_NPC_RB")
 hand_NPC_node_offset_path = NodePath("../Arm2/Joint1/Joint2/Hand/GrabPos")
+lower_bounds = 900.0
 
 [node name="Arm" type="Position2D" parent="."]
 position = Vector2( 1.98254, 587.21 )
@@ -48,7 +53,7 @@ flipped = false
 [node name="Bicep_Arm" type="Sprite" parent="Arm"]
 position = Vector2( 102.272, 6.96484 )
 scale = Vector2( 0.865, 0.7 )
-texture = ExtResource( 11 )
+texture = ExtResource( 6 )
 
 [node name="Joint1" type="Position2D" parent="Arm"]
 position = Vector2( 198.978, 5.93639 )
@@ -56,7 +61,7 @@ position = Vector2( 198.978, 5.93639 )
 [node name="Forearm_Arm" type="Sprite" parent="Arm/Joint1"]
 position = Vector2( 124.66, 0.0240784 )
 scale = Vector2( 1, 0.7 )
-texture = ExtResource( 11 )
+texture = ExtResource( 6 )
 
 [node name="Joint2" type="Position2D" parent="Arm/Joint1"]
 position = Vector2( 218.633, 0 )
@@ -67,8 +72,8 @@ position = Vector2( 80.726, -3.36353 )
 [node name="Hand_Arm" type="Sprite" parent="Arm/Joint1/Joint2/Hand"]
 position = Vector2( 2.23138, -14.2555 )
 rotation = 0.527911
-texture = ExtResource( 12 )
-script = ExtResource( 10 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open.png"
 sprite_new_path = "res://Sprites/Hand_Sprite_Closed.png"
 
@@ -88,10 +93,7 @@ position = Vector2( 10.0934, -89.2561 )
 [node name="Arm2" parent="." instance=ExtResource( 9 )]
 resting_pos_path = NodePath("../RestingPos")
 
-[node name="Bounds" parent="." instance=ExtResource( 6 )]
-position = Vector2( 844.32, 601.504 )
-
-[node name="Exit Sign" parent="." instance=ExtResource( 7 )]
+[node name="Exit Sign" parent="." instance=ExtResource( 10 )]
 position = Vector2( 109.732, 59.6184 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -101,7 +103,7 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 595.751, 377.151 )
 scale = Vector2( 5.11766, 6.73773 )
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 595.751, 377.151 )
@@ -120,7 +122,7 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Sprite" type="Sprite" parent="StaticBody2D2"]
 position = Vector2( 595.751, 377.151 )
 scale = Vector2( 5.11766, 6.73773 )
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 595.751, 377.151 )
@@ -134,5 +136,14 @@ occluder = SubResource( 2 )
 
 [node name="RestingPos" type="Position2D" parent="."]
 position = Vector2( 803.073, 307.244 )
+
+[node name="Bounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( 513.194, 311.416 )
+shape = SubResource( 3 )
+
+[node name="Reset" type="Position2D" parent="Bounds"]
+position = Vector2( 300, 300 )
 
 [editable path="Arm2"]
