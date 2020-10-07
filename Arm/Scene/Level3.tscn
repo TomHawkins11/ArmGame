@@ -31,6 +31,7 @@ position = Vector2( 4.32019, -3.05176e-05 )
 [node name="Torch" parent="." instance=ExtResource( 4 )]
 visible = true
 position = Vector2( 362.167, 162.97 )
+gravity_scale = 24.0
 contacts_reported = 10000
 hand_sprite_node_path = NodePath("../Arm2/Joint1/Joint2/Hand/Hand_Arm")
 arm_node_path = NodePath("../Arm2")
