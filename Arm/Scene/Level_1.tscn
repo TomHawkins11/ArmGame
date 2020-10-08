@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Background_n.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Player_Arm.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=6]
@@ -15,10 +15,10 @@ next_scene_path = "res://Scene/Level_2.tscn"
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
-[node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
-
 [node name="Background" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4.32019, -3.05176e-05 )
+position = Vector2( 600, 300 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
 
 [node name="Torch" parent="." instance=ExtResource( 4 )]
 position = Vector2( 362.167, 162.97 )
