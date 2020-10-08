@@ -5,8 +5,8 @@
 [ext_resource path="res://Sprites/ArmSegment_Sprite - Copy.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Hand_Sprite_Open - Copy.png" type="Texture" id=4]
 
-[node name="Arm2" type="Position2D"]
-position = Vector2( 1048.5, 322.912 )
+[node name="NPC_arm" type="Position2D"]
+position = Vector2( 1020, 330 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
@@ -31,13 +31,14 @@ position = Vector2( 218.633, 0 )
 position = Vector2( 80.726, -3.36353 )
 scale = Vector2( 1, -1 )
 
-[node name="Hand_Arm" type="Sprite" parent="Joint1/Joint2/Hand"]
+[node name="NPC_Hand_Sprite" type="Sprite" parent="Joint1/Joint2/Hand"]
 position = Vector2( 2.23138, -14.2555 )
 rotation = 0.527911
 texture = ExtResource( 4 )
 script = ExtResource( 1 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
 sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
 
 [node name="Hand_NPC_RB" type="RigidBody2D" parent="Joint1/Joint2/Hand"]
 collision_layer = 2147483649
@@ -49,5 +50,6 @@ modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
 position = Vector2( -1.11032, -1.32419 )
 polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
 
-[node name="GrabPos" type="Position2D" parent="Joint1/Joint2/Hand"]
+[node name="NPC_GrabPos" type="Position2D" parent="Joint1/Joint2/Hand"]
 position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159

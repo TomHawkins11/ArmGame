@@ -4,7 +4,7 @@ const MIN_DIST = 100
 
 onready var joint1 = $Joint1
 onready var joint2 = $Joint1/Joint2
-onready var hand = $Joint1/Joint2/Hand
+onready var hand = $Joint1/Joint2/Player_Hand
 
 var len_upper = 0
 var len_middle = 0

@@ -5,8 +5,8 @@
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Arm.gd" type="Script" id=5]
 
-[node name="Arm" type="Position2D"]
-position = Vector2( 40, 328 )
+[node name="Player_Arm" type="Position2D"]
+position = Vector2( 0, 600 )
 rotation = -0.87301
 script = ExtResource( 5 )
 flipped = false
@@ -27,10 +27,10 @@ texture = ExtResource( 1 )
 [node name="Joint2" type="Position2D" parent="Joint1"]
 position = Vector2( 218.633, 0 )
 
-[node name="Hand" type="Position2D" parent="Joint1/Joint2"]
+[node name="Player_Hand" type="Position2D" parent="Joint1/Joint2"]
 position = Vector2( 80.726, -3.36353 )
 
-[node name="Hand_Arm" type="Sprite" parent="Joint1/Joint2/Hand"]
+[node name="Player_Hand_Arm" type="Sprite" parent="Joint1/Joint2/Player_Hand"]
 position = Vector2( 2.23138, -14.2555 )
 rotation = 0.527911
 texture = ExtResource( 2 )
@@ -38,15 +38,15 @@ script = ExtResource( 4 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open.png"
 sprite_new_path = "res://Sprites/Hand_Sprite_Closed.png"
 
-[node name="HandRB" type="RigidBody2D" parent="Joint1/Joint2/Hand"]
+[node name="Player_HandRB" type="RigidBody2D" parent="Joint1/Joint2/Player_Hand"]
 collision_layer = 2147483649
 collision_mask = 2147483649
 mode = 3
 
-[node name="HandCollision" type="CollisionPolygon2D" parent="Joint1/Joint2/Hand/HandRB"]
+[node name="HandCollision" type="CollisionPolygon2D" parent="Joint1/Joint2/Player_Hand/Player_HandRB"]
 modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
 position = Vector2( -1.11032, -1.32419 )
 polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
 
-[node name="GrabPos" type="Position2D" parent="Joint1/Joint2/Hand"]
+[node name="Player_GrabPos" type="Position2D" parent="Joint1/Joint2/Player_Hand"]
 position = Vector2( 10.0934, -89.2561 )

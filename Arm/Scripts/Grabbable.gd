@@ -3,28 +3,20 @@ extends RigidBody2D
 var grabbed = false
 var game_over = false
 
-export(NodePath) var hand_sprite_node_path
-onready var hand_sprite = get_node(hand_sprite_node_path)
+## Player Hand Variables
+onready var handRB = self.get_owner().find_node("Player_HandRB")
+onready var hand_node_offset = self.get_owner().find_node("Player_GrabPos")
 
-export(NodePath) var arm_node_path
-onready var arm = get_node(arm_node_path)
+##NPC Hand Variables
+onready var npc_hand_sprite = self.get_owner().find_node("NPC_Hand_Sprite")
+onready var arm = self.get_owner().find_node("NPC_arm")
+onready var hand_NPC = self.get_owner().find_node("Hand_NPC_RB")
+onready var hand_NPC_offset = self.get_owner().find_node("NPC_GrabPos")
 
-export(NodePath) var hand_node_path
-onready var handRB = get_node(hand_node_path)
+export(float) var lower_bounds = 700
 
-export(NodePath) var hand_node_offset_path
-onready var hand_node_offset = get_node(hand_node_offset_path)
-
-export(NodePath) var hand_NPC_node_path
-onready var hand_NPC = get_node(hand_NPC_node_path)
-
-export(NodePath) var hand_NPC_node_offset_path
-onready var hand_NPC_offset = get_node(hand_NPC_node_offset_path)
-
-export(float) var lower_bounds = get_viewport_rect().size.y + 100
-
-var grabbing_node
-var grabbing_node_offset
+var grabbing_node = handRB
+var grabbing_node_offset = hand_node_offset
 var reset_state = false
 
 # Declare member variables here. Examples:
@@ -32,6 +24,10 @@ var reset_state = false
 # var b = "text"
 
 func _physics_process(delta):
+	if game_over:
+		self.rotation = grabbing_node.global_rotation
+		self.position = grabbing_node_offset.global_position
+		return
 	if grabbed:
 		self.position = grabbing_node_offset.global_position
 		self.rotation = grabbing_node.global_rotation
@@ -43,14 +39,16 @@ func _physics_process(delta):
 		var collisions = get_colliding_bodies()
 		for c in collisions:
 			print(c.name)
-			if	c.name == "Hand_NPC_RB":
+			if	c.name == hand_NPC.name:
 				grabbed = true
 				game_over = true
 				play_random_grab()
 				grabbing_node = hand_NPC
 				grabbing_node_offset = hand_NPC_offset
-				hand_sprite.win()
+				
+				npc_hand_sprite.win()
 				arm.grab_torch()
+				get_tree().get_root().get_node("Level").level_complete()
 		
 				
 
@@ -62,7 +60,7 @@ func _input(event):
 			var bodies = $Detector.get_overlapping_bodies()
 			for b in bodies:
 				print(b.name)
-				if b.name == "HandRB" and grabbed == false:
+				if b.name == handRB.name and grabbed == false:
 					grabbed = true;
 					play_random_grab();
 					grabbing_node = handRB
@@ -85,8 +83,8 @@ func _input(event):
 func _ready():
 	add_collision_exception_with(handRB)
 	
-	grabbing_node = hand_node_path
-	grabbing_node_offset = hand_NPC_node_offset_path
+	grabbing_node = handRB
+	grabbing_node_offset = grabbing_node_offset
 	pass # Replace with function body.
 	
 func play_random_grab():

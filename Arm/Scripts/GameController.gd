@@ -1,6 +1,7 @@
 extends Node2D
 
 export(String, FILE, "*.tscn,*.scn") var next_scene_path
+onready var SceneChanger = get_node("CanvasLayer")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -14,7 +15,10 @@ func _ready():
 	
 			
 func next_level():
-	get_tree().change_scene(next_scene_path)
+	SceneChanger.change_scene(next_scene_path)
+	
+func level_complete():
+	next_level()
 	
 func restart_level():
 	get_tree().reload_current_scene()

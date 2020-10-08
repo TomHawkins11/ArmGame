@@ -13,8 +13,8 @@ var len_middle = 0
 var len_lower = 0
 
 export var flipped = true
-export(NodePath) var resting_pos_path
-var resting_pos: Position2D
+
+onready var resting_pos = get_node("../Resting_Pos")
 
 var goal_pos = Vector2()
 var int_pos = Vector2()
@@ -24,7 +24,7 @@ var step_rate = 0.5
 var step_time = 0.0
 
 func _ready():
-	resting_pos = get_node(resting_pos_path)
+	
 	len_upper = joint1.position.x
 	len_middle = joint2.position.x
 	len_lower = hand.position.x
@@ -53,9 +53,12 @@ func step(g_pos):
 func _process(delta):
 	
 	if has_torch:
-		update_ik(resting_pos.get_position())
+		update_ik(resting_pos.get_global_position())
 	else:
-		update_ik((torch.get_position()))
+		if torch != null:
+			update_ik((torch.get_position()))
+		else:
+			push_warning("Torch not assigned")
 
 func update_ik(target_pos):
 	var offset = target_pos - global_position

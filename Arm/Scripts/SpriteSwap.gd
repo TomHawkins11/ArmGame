@@ -5,6 +5,8 @@ export(String, FILE, "*.png") var sprite_new_path
 onready var spriteToSwap = load(sprite_to_swap_path)
 onready var spriteNew = load(sprite_new_path)
 
+
+export(bool) var canControl = true
 var grabbed = false
 
 func switch_sprite(sprite):
@@ -14,7 +16,7 @@ func switch_sprite(sprite):
 # var a = 2
 # var b = "text"
 func _input(event):
-	if event is InputEventMouseButton and grabbed == false:
+	if event is InputEventMouseButton and grabbed == false and canControl:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			switch_sprite(spriteNew)
 		else:

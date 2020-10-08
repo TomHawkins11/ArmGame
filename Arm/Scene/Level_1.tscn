@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Player_Arm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Arm_NPC.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=10]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 1 )
+next_scene_path = "res://Scene/Level_2.tscn"
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+position = Vector2( 4.32019, -3.05176e-05 )
+
+[node name="Torch" parent="." instance=ExtResource( 4 )]
+position = Vector2( 362.167, 162.97 )
+contacts_reported = 10000
+lower_bounds = 900.0
+
+[node name="Exit Sign" parent="." instance=ExtResource( 10 )]
+position = Vector2( 109.732, 59.6184 )
+
+[node name="Resting_Pos" type="Position2D" parent="."]
+position = Vector2( 803.073, 307.244 )
+
+[node name="NPC_arm" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1022.62, 312.157 )
+
+[node name="Player_Arm" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0.501022, 616.06 )
