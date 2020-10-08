@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Box.png" type="Texture" id=3]
 [ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Arm.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=6]
@@ -9,20 +10,19 @@
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=8]
 [ext_resource path="res://Arm_NPC.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=10]
-[ext_resource path="res://icon.png" type="Texture" id=11]
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="StreamTexture" id=1]
 flags = 7
 load_path = "res://.import/Background_Tile.png-7e345e18689e70f451fcb239636881ac.stex"
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 31.7349, 32.2435 )
 
-[sub_resource type="OccluderPolygon2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=3]
 cull_mode = 1
 polygon = PoolVector2Array( 430.691, 591.92, 433.283, 159.039, 756.432, 159.903, 756.432, 584.144 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 751.702, 522.75 )
 
 [node name="Level2" type="Node2D"]
@@ -34,7 +34,7 @@ color = Color( 0.203922, 0.203922, 0.203922, 1 )
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 513.236, 273.899 )
 scale = Vector2( 3.56618, 2.36949 )
-texture = SubResource( 4 )
+texture = SubResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 400, 400.274 )
 region_filter_clip = true
@@ -111,38 +111,38 @@ position = Vector2( 301, -100 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
-position = Vector2( 595.751, 377.151 )
-scale = Vector2( 5.11766, 6.73773 )
-texture = ExtResource( 11 )
+position = Vector2( 589.703, 375.423 )
+scale = Vector2( 3.22921, 4.45614 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 595.751, 377.151 )
 scale = Vector2( 5.11766, 6.73773 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
 position = Vector2( 0.864136, -5.1842 )
 scale = Vector2( 0.994132, 1.017 )
-occluder = SubResource( 2 )
+occluder = SubResource( 3 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 300, 300 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D2"]
-position = Vector2( 595.751, 377.151 )
-scale = Vector2( 5.11766, 6.73773 )
-texture = ExtResource( 11 )
+position = Vector2( 595.751, 372.831 )
+scale = Vector2( 3.28591, 4.40484 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 595.751, 377.151 )
 scale = Vector2( 5.11766, 6.73773 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D2"]
 position = Vector2( 0.864136, -5.1842 )
 scale = Vector2( 0.994132, 1.017 )
-occluder = SubResource( 2 )
+occluder = SubResource( 3 )
 
 [node name="RestingPos" type="Position2D" parent="."]
 position = Vector2( 803.073, 307.244 )
@@ -151,7 +151,7 @@ position = Vector2( 803.073, 307.244 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
 position = Vector2( 513.194, 311.416 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Reset" type="Position2D" parent="Bounds"]
 position = Vector2( 300, 300 )
