@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Sprites/background.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Background_Tile.png" type="Texture" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 109.4
+
+[sub_resource type="NoiseTexture" id=2]
+as_normalmap = true
+bump_strength = 20.1
+noise = SubResource( 1 )
 
 [node name="Background" type="Sprite"]
 show_behind_parent = true
 scale = Vector2( 128, 128 )
 texture = ExtResource( 1 )
+normal_map = SubResource( 2 )
