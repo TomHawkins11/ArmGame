@@ -21,8 +21,11 @@ onready var hand_NPC = get_node(hand_NPC_node_path)
 export(NodePath) var hand_NPC_node_offset_path
 onready var hand_NPC_offset = get_node(hand_NPC_node_offset_path)
 
+export(float) var lower_bounds = get_viewport_rect().size.y + 100
+
 var grabbing_node
 var grabbing_node_offset
+var reset_state = false
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -33,6 +36,8 @@ func _physics_process(delta):
 		self.position = grabbing_node_offset.global_position
 		self.rotation = grabbing_node.global_rotation
 		sleeping = true
+	if self.position.y > lower_bounds:
+		reset_state = true
 	else:
 		sleeping = false
 		var collisions = get_colliding_bodies()
@@ -46,6 +51,7 @@ func _physics_process(delta):
 				grabbing_node_offset = hand_NPC_offset
 				hand_sprite.win()
 				arm.grab_torch()
+		
 				
 
 func _input(event):
@@ -88,6 +94,12 @@ func play_random_grab():
 	$Torch2/Grab_Sound.set_stream(torch_sfx)
 	$Torch2/Grab_Sound.play()
 
+func _integrate_forces(state):
+	if reset_state:
+		state.set_angular_velocity(0)
+		state.set_linear_velocity(Vector2.DOWN)
+		state.transform = Transform2D(0.0, Vector2(300, -300))
+		reset_state = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
