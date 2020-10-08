@@ -1,0 +1,372 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Background_n.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/Torch.gd" type="Script" id=5]
+[ext_resource path="res://Prefabs/Torch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=7]
+[ext_resource path="res://Audio/Fire_Loop.wav" type="AudioStream" id=8]
+[ext_resource path="res://Arm_NPC.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/ArmSegment_Sprite - Copy.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Hand_Sprite_ThumbsUp - Copy.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.4425, 146.375 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.15, 126.437 )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+position = Vector2( 569.236, 353.899 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
+
+[node name="Torch" type="Node2D" parent="." groups=[
+"RB",
+]]
+editor/display_folded = true
+position = Vector2( 567, 352 )
+z_index = 1
+script = ExtResource( 5 )
+
+[node name="Torch2" parent="Torch" instance=ExtResource( 6 )]
+position = Vector2( 2.67029e-005, -0.26001 )
+
+[node name="Light2D2" type="Light2D" parent="Torch/Torch2"]
+position = Vector2( 26.5074, -117.627 )
+texture = ExtResource( 7 )
+color = Color( 0.811765, 0.65098, 0.47451, 1 )
+energy = 1.38
+mode = 2
+shadow_enabled = true
+
+[node name="Crackle_Loop" type="AudioStreamPlayer2D" parent="Torch/Torch2/Light2D2"]
+position = Vector2( -26.5074, 117.627 )
+stream = ExtResource( 8 )
+volume_db = 11.134
+autoplay = true
+max_distance = 707.0
+bus = "Sound Effects"
+
+[node name="Grab_Sound" type="AudioStreamPlayer2D" parent="Torch/Torch2"]
+volume_db = 3.0
+bus = "Sound Effects"
+
+[node name="Detector" type="Area2D" parent="Torch"]
+position = Vector2( 0.425, -0.26 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
+position = Vector2( 1.45435e-005, 9.82299 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
+position = Vector2( 0.424988, 17.563 )
+shape = SubResource( 2 )
+
+[node name="Resting_Pos" type="Position2D" parent="."]
+position = Vector2( 803.073, 307.244 )
+
+[node name="NPC_arm" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1022.62, 312.157 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+scale = Vector2( 1, -1 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159
+
+[node name="NPC_arm3" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( 907.62, 592.157 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm3"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm3"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm3/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm3/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm3/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+scale = Vector2( 1, -1 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm3/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm3/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm3/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm3/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159
+
+[node name="NPC_arm4" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( 907.62, 9.15698 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm4"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm4"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm4/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm4/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm4/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+scale = Vector2( 1, -1 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm4/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm4/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm4/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm4/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159
+
+[node name="NPC_arm2" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( -1.38, 309.157 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm2"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm2"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm2/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm2/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm2/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm2/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm2/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm2/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm2/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159
+
+[node name="NPC_arm5" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( 130.62, 591.157 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm5"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm5"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm5/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm5/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm5/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm5/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm5/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm5/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm5/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159
+
+[node name="NPC_arm6" type="Position2D" parent="."]
+editor/display_folded = true
+position = Vector2( 145.62, 4.15698 )
+rotation = -0.87301
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Bicep_Arm" type="Sprite" parent="NPC_arm6"]
+position = Vector2( 102.272, 6.96484 )
+scale = Vector2( 0.865, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint1" type="Position2D" parent="NPC_arm6"]
+position = Vector2( 198.978, 5.93639 )
+
+[node name="Forearm_Arm" type="Sprite" parent="NPC_arm6/Joint1"]
+position = Vector2( 124.66, 0.0240784 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 10 )
+
+[node name="Joint2" type="Position2D" parent="NPC_arm6/Joint1"]
+position = Vector2( 218.633, 0 )
+
+[node name="Hand" type="Position2D" parent="NPC_arm6/Joint1/Joint2"]
+position = Vector2( 80.726, -3.36353 )
+
+[node name="NPC_Hand_Sprite" type="Sprite" parent="NPC_arm6/Joint1/Joint2/Hand"]
+position = Vector2( 2.23138, -14.2555 )
+rotation = 0.527911
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
+sprite_new_path = "res://Sprites/Hand_Sprite_Closed - Copy.png"
+canControl = false
+
+[node name="Hand_NPC_RB" type="RigidBody2D" parent="NPC_arm6/Joint1/Joint2/Hand"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+mode = 3
+
+[node name="HandCollision" type="CollisionPolygon2D" parent="NPC_arm6/Joint1/Joint2/Hand/Hand_NPC_RB"]
+modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
+position = Vector2( -1.11032, -1.32419 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+
+[node name="NPC_GrabPos" type="Position2D" parent="NPC_arm6/Joint1/Joint2/Hand"]
+position = Vector2( 10.0934, -89.2561 )
+rotation = 3.14159

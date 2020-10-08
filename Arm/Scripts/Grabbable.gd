@@ -74,7 +74,7 @@ func _input(event):
 				grabbed = false;
 				var LV = grabbing_node.get_linear_velocity().normalized()
 			
-				apply_impulse(Vector2(0,0), LV * 1000)
+				apply_impulse(Vector2(0,0), LV * 500)
 				set_angular_velocity(LV.length() * 4)
 				add_collision_exception_with(handRB)
 				

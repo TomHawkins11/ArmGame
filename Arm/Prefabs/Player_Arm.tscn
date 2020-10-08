@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Arm.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/ArmSegment_Sprite.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Hand_Sprite_Open.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Arm.gd" type="Script" id=5]
 
 [node name="Player_Arm" type="Position2D"]
 position = Vector2( 0, 600 )
 rotation = -0.87301
-script = ExtResource( 5 )
+script = ExtResource( 1 )
 flipped = false
 
 [node name="Bicep_Arm" type="Sprite" parent="."]
 position = Vector2( 102.272, 6.96484 )
 scale = Vector2( 0.865, 0.7 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="Joint1" type="Position2D" parent="."]
 position = Vector2( 198.978, 5.93639 )
@@ -22,7 +22,7 @@ position = Vector2( 198.978, 5.93639 )
 [node name="Forearm_Arm" type="Sprite" parent="Joint1"]
 position = Vector2( 124.66, 0.0240784 )
 scale = Vector2( 1, 0.7 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="Joint2" type="Position2D" parent="Joint1"]
 position = Vector2( 218.633, 0 )
@@ -33,7 +33,7 @@ position = Vector2( 80.726, -3.36353 )
 [node name="Player_Hand_Arm" type="Sprite" parent="Joint1/Joint2/Player_Hand"]
 position = Vector2( 2.23138, -14.2555 )
 rotation = 0.527911
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 script = ExtResource( 4 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open.png"
 sprite_new_path = "res://Sprites/Hand_Sprite_Closed.png"
