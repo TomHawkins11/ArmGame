@@ -52,4 +52,4 @@ polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68
 
 [node name="NPC_GrabPos" type="Position2D" parent="Joint1/Joint2/Hand"]
 position = Vector2( 10.0934, -89.2561 )
-rotation = 3.14159
+scale = Vector2( 1, -1 )

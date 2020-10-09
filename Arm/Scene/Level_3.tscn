@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Prefabs/Player_Arm.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/Box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Box.png" type="Texture" id=10]
+[ext_resource path="res://Prefabs/LevelMusic.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.7349, 32.2435 )
@@ -67,3 +68,5 @@ shape = SubResource( 1 )
 position = Vector2( 0.864136, -5.1842 )
 scale = Vector2( 0.994132, 1.017 )
 occluder = SubResource( 2 )
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 11 )]

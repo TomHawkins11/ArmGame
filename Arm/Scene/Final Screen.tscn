@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/ArmSegment_Sprite - Copy.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Hand_Sprite_ThumbsUp - Copy.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=12]
+[ext_resource path="res://Audio/Menu_Music.wav" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.4425, 146.375 )
@@ -32,13 +33,12 @@ position = Vector2( 569.236, 353.899 )
 [node name="Torch" type="Node2D" parent="." groups=[
 "RB",
 ]]
-editor/display_folded = true
 position = Vector2( 567, 352 )
 z_index = 1
 script = ExtResource( 5 )
 
 [node name="Torch2" parent="Torch" instance=ExtResource( 6 )]
-position = Vector2( 2.67029e-005, -0.26001 )
+position = Vector2( 2.67029e-05, -0.26001 )
 
 [node name="Light2D2" type="Light2D" parent="Torch/Torch2"]
 position = Vector2( 26.5074, -117.627 )
@@ -64,7 +64,7 @@ bus = "Sound Effects"
 position = Vector2( 0.425, -0.26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Torch/Detector"]
-position = Vector2( 1.45435e-005, 9.82299 )
+position = Vector2( 1.45435e-05, 9.82299 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
@@ -75,7 +75,6 @@ shape = SubResource( 2 )
 position = Vector2( 803.073, 307.244 )
 
 [node name="NPC_arm" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1022.62, 312.157 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -125,7 +124,6 @@ position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
 
 [node name="NPC_arm3" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( 907.62, 592.157 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -175,7 +173,6 @@ position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
 
 [node name="NPC_arm4" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( 907.62, 9.15698 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -225,7 +222,6 @@ position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
 
 [node name="NPC_arm2" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( -1.38, 309.157 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -274,7 +270,6 @@ position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
 
 [node name="NPC_arm5" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( 130.62, 591.157 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -323,7 +318,6 @@ position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
 
 [node name="NPC_arm6" type="Position2D" parent="."]
-editor/display_folded = true
 position = Vector2( 145.62, 4.15698 )
 rotation = -0.87301
 scale = Vector2( 0.5, 0.5 )
@@ -370,3 +364,8 @@ polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68
 [node name="NPC_GrabPos" type="Position2D" parent="NPC_arm6/Joint1/Joint2/Hand"]
 position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
+bus = "Music"
