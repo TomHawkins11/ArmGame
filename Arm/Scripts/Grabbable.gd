@@ -25,12 +25,12 @@ var reset_state = false
 
 func _physics_process(delta):
 	if game_over:
-		self.rotation = grabbing_node.global_rotation
-		self.position = grabbing_node_offset.global_position
+		self.global_rotation = grabbing_node_offset.global_rotation
+		self.global_position = grabbing_node_offset.global_position
 		return
 	if grabbed:
-		self.position = grabbing_node_offset.global_position
-		self.rotation = grabbing_node.global_rotation
+		self.global_position = grabbing_node_offset.global_position
+		self.global_rotation = grabbing_node_offset.global_rotation
 		sleeping = true
 	if self.position.y > lower_bounds:
 		reset_state = true

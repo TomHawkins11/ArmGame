@@ -29,11 +29,11 @@ position = Vector2( 218.633, 0 )
 
 [node name="Hand" type="Position2D" parent="Joint1/Joint2"]
 position = Vector2( 80.726, -3.36353 )
-scale = Vector2( 1, -1 )
 
 [node name="NPC_Hand_Sprite" type="Sprite" parent="Joint1/Joint2/Hand"]
 position = Vector2( 2.23138, -14.2555 )
-rotation = 0.527911
+rotation = -1.05941
+scale = Vector2( 1, -1 )
 texture = ExtResource( 4 )
 script = ExtResource( 1 )
 sprite_to_swap_path = "res://Sprites/Hand_Sprite_Open - Copy.png"
@@ -51,5 +51,5 @@ position = Vector2( -1.11032, -1.32419 )
 polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
 
 [node name="NPC_GrabPos" type="Position2D" parent="Joint1/Joint2/Hand"]
-position = Vector2( 10.0934, -89.2561 )
-scale = Vector2( 1, -1 )
+position = Vector2( 17.9834, 51.5637 )
+rotation = 2.37016
