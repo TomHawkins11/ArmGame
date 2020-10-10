@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/Roboto-Medium.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI_Elements/twitter.svg" type="Texture" id=2]
+[ext_resource path="res://UI_Elements/Panel.png" type="Texture" id=3]
+[ext_resource path="res://UI_Elements/Button_URL.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+resource_name = "Roboto"
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="Credits" type="Control"]
+anchor_top = 0.332
+anchor_right = 1.0
+anchor_bottom = 0.666
+margin_left = 252.0
+margin_top = -50.2
+margin_right = -252.0
+margin_bottom = 51.4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -45.0
+margin_bottom = 2.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Oscar Jemmott" type="TextureRect" parent="VBoxContainer"]
+margin_top = 25.0
+margin_right = 475.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 475, 125 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name_Twitter_Handle" type="Label" parent="VBoxContainer/Oscar Jemmott"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.6097
+margin_top = -100.0
+margin_right = 292.61
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "OSCAR JEMMOTT
+@Oscarno_"
+valign = 1
+percent_visible = -0.047619
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Twitter_Button" type="Button" parent="VBoxContainer/Oscar Jemmott"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -116.58
+margin_top = -58.3848
+margin_right = -8.57993
+margin_bottom = 59.6152
+action_mode = 0
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Target_URL = "https://twitter.com/home"
+
+[node name="Tom Hawkins" type="TextureRect" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 475.0
+margin_bottom = 279.0
+rect_min_size = Vector2( 475, 125 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name_Twitter_Handle" type="Label" parent="VBoxContainer/Tom Hawkins"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.6097
+margin_top = -100.0
+margin_right = 292.61
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "TOM HAWKINS
+@TomHawkins__"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Twitter_Button" type="Button" parent="VBoxContainer/Tom Hawkins"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -116.58
+margin_top = -58.3848
+margin_right = -8.57993
+margin_bottom = 59.6152
+action_mode = 0
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Target_URL = "https://twitter.com/home"
+[connection signal="toggled" from="VBoxContainer/Oscar Jemmott/Twitter_Button" to="VBoxContainer/Oscar Jemmott/Twitter_Button" method="_on_Twitter_Button_toggled"]

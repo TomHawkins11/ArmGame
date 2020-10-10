@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/ArmSegment_Sprite - Copy.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Hand_Sprite_ThumbsUp - Copy.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/SpriteSwap.gd" type="Script" id=12]
+[ext_resource path="res://UI_Elements/Credits.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.4425, 146.375 )
@@ -363,3 +364,13 @@ polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68
 [node name="NPC_GrabPos" type="Position2D" parent="NPC_arm6/Joint1/Joint2/Hand"]
 position = Vector2( 10.0934, -89.2561 )
 rotation = 3.14159
+
+[node name="Credits" parent="." instance=ExtResource( 13 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 37.0
+margin_top = 58.0
+margin_right = 526.0
+margin_bottom = 334.0
