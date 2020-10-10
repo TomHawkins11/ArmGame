@@ -17,16 +17,21 @@ _global_script_class_icons={
 
 config/name="Floppy Arm Gang"
 run/main_scene="res://Scene/Level_1.tscn"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]
 
 SceneChanger="*res://SceneChanger.gd"
+MusicController="*res://MusicController.tscn"
 
 [display]
 
-window/size/always_on_top=true
+window/size/resizable=false
 mouse_cursor/custom_image="res://Sprites/Cursor.png"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 

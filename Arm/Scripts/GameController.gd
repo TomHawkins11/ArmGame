@@ -11,6 +11,7 @@ onready var SceneChanger = get_node("CanvasLayer")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	music_manage()
 	pass # Replace with function body.
 	
 			
@@ -28,7 +29,23 @@ func _input(event):
 		if event.pressed and event.scancode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed and event.scancode == KEY_R:
-			restart_level()
+			SceneChanger.reload_scene()
+		if event.pressed and event.scancode == KEY_1:
+			SceneChanger.change_scene("res://Scene/Level_1.tscn")
+		if event.pressed and event.scancode == KEY_2:
+			SceneChanger.change_scene("res://Scene/Level_2.tscn")
+		if event.pressed and event.scancode == KEY_3:
+			SceneChanger.change_scene("res://Scene/Level_3.tscn")
+		if event.pressed and event.scancode == KEY_4:
+			SceneChanger.change_scene("res://Scene/Final Screen.tscn")
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func music_manage():
+	print(get_tree().get_current_scene().get_name())
+	if get_tree().get_current_scene().get_name() == "Final Screen":
+		MusicController.play_menu_music()
+	else:
+		MusicController.play_level_music()
