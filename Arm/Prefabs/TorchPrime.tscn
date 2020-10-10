@@ -16,7 +16,7 @@ extents = Vector2( 35.15, 126.437 )
 ]]
 position = Vector2( 592, 328 )
 z_index = 1
-gravity_scale = 20.0
+gravity_scale = 14.0
 contact_monitor = true
 linear_damp = 1.0
 applied_torque = 3.652
