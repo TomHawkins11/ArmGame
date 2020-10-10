@@ -10,7 +10,6 @@ onready var SceneChanger = get_node("CanvasLayer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	music_manage()
 	pass # Replace with function body.
@@ -28,7 +27,7 @@ func restart_level():
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ESCAPE:
-			get_tree().quit()
+			SceneChanger.change_scene("res://Scene/Final Screen.tscn")
 		if event.pressed and event.scancode == KEY_R:
 			SceneChanger.reload_scene()
 		if event.pressed and event.scancode == KEY_1:

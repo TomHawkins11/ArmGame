@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/SceneChanger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Background_n.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/CanvasModulate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/TorchPrime.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scene/ExitSign.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Arm_NPC.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Player_Arm.tscn" type="PackedScene" id=8]
 
@@ -24,9 +23,6 @@ position = Vector2( 600, 300 )
 position = Vector2( 362.167, 162.97 )
 contacts_reported = 10000
 lower_bounds = 900.0
-
-[node name="Exit Sign" parent="." instance=ExtResource( 6 )]
-position = Vector2( 109.732, 59.6184 )
 
 [node name="Resting_Pos" type="Position2D" parent="."]
 position = Vector2( 803.073, 307.244 )

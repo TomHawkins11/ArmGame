@@ -6,6 +6,6 @@
 [node name="Level" instance=ExtResource( 1 )]
 next_scene_path = "res://Scene/Level_3.tscn"
 
-[node name="Obstacle" parent="." index="8" instance=ExtResource( 2 )]
+[node name="Obstacle" parent="." index="7" instance=ExtResource( 2 )]
 position = Vector2( 153, 61 )
 scale = Vector2( 0.75, 1 )
