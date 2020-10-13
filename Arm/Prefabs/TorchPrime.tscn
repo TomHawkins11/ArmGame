@@ -6,7 +6,7 @@
 [ext_resource path="res://Audio/Fire_Loop.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.4425, 146.375 )
+extents = Vector2( 29.4425, 119.563 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 35.15, 126.437 )
@@ -23,7 +23,8 @@ applied_torque = 3.652
 script = ExtResource( 1 )
 
 [node name="Torch2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2.67029e-05, -0.26001 )
+position = Vector2( 2.67029e-005, -0.26001 )
+scale = Vector2( 0.7, 0.7 )
 
 [node name="Light2D2" type="Light2D" parent="Torch2"]
 position = Vector2( 26.5074, -117.627 )
@@ -49,9 +50,9 @@ bus = "Sound Effects"
 position = Vector2( 0.425, -0.26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Detector"]
-position = Vector2( 1.45435e-05, 9.82299 )
+position = Vector2( -1.99999, 8.82299 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.424988, 17.563 )
+position = Vector2( -0.575012, -0.437 )
 shape = SubResource( 2 )

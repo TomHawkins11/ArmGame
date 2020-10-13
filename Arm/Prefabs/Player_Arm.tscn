@@ -46,7 +46,7 @@ mode = 3
 [node name="HandCollision" type="CollisionPolygon2D" parent="Joint1/Joint2/Player_Hand/Player_HandRB"]
 modulate = Color( 0.843137, 0.0862745, 0.0862745, 1 )
 position = Vector2( -1.11032, -1.32419 )
-polygon = PoolVector2Array( -78.3027, -32.2124, -18.8139, -119.383, 17.3148, -68.885, 99.8619, -59.3809, 90.1991, 37.8006, 50.9682, 67.8927, -78.0759, 42.1752 )
+polygon = PoolVector2Array( -78.3027, -32.2124, -31.8456, -54.7784, 27.2998, -57.3914, 42.0017, -22.738, 45.5808, 17.3268, -1.70406, 46.5354, -78.0759, 42.1752 )
 
 [node name="Player_GrabPos" type="Position2D" parent="Joint1/Joint2/Player_Hand"]
 position = Vector2( 10.0934, -89.2561 )

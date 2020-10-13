@@ -19,12 +19,12 @@ func _ready():
 	
 func get_all_rb():
 	for c in (get_tree().get_nodes_in_group("RB")):
-    	if c is RigidBody2D:
-        	if get_pos(c).y < lower_bounds.y:
+		if c is RigidBody2D:
+			if get_pos(c).y < lower_bounds.y:
 				c.
 				
 
-    
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
